@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Currency Converter</title>
+</head>
+<body>
+    <h1>Currency Converter</h1>
+    <form action="/convert" method="post">
+        <input type="text" name="amount" placeholder="Amount" value="{{ request.form.amount }}">
+        <select name="direction">
+            <option value="TWD_to_JPY" {% if request.form.direction == 'TWD_to_JPY' %}selected{% endif %}>TWD to JPY</option>
+            <option value="JPY_to_TWD" {% if request.form.direction == 'JPY_to_TWD' %}selected{% endif %}>JPY to TWD</option>
+        </select>
+        <button type="submit">Convert</button>
+    </form>
+
+    {% if error %}
+    <p style="color:red;">{{ error }}</p>
+    {% endif %}
+
+    {% if result %}
+    <p>結果: {{ result }}</p>
+    {% endif %}
+</body>
+</html>
